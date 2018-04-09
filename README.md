@@ -16,7 +16,7 @@
 compile 'com.hebin:hxb:1.0.2'
 ```
 说到jcenter，就顺便提一下遇到的坑；网上已经有很多关于上传安卓项目到jcenter的教程了，但是大多数都只是适用于java写的Android项目，如果项目中包含了kt的文件，那么就会报错；
-![这里写图片描述](https://img-blog.csdn.net/20180409120321387?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0hlYmluMzIwMzIw/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70)
+![这里写图片描述](https://github.com/Hebin320/hxbt/blob/master/img/image.jpg)
 这种错误，百度出来基本都是什么编码问题，要添加UTF-8的识别之类的，其实不然，只是因为不能识别kt文件才报的错误，解决方案就是在项目的bulid.gradle中添加：
 
 ```
