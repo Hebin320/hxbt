@@ -13,7 +13,7 @@
 项目我已经传到了jcenter上，可以直接通过gradle导入到项目中；
 
 ```
-compile 'com.hebin:hxbr:1.0.0'
+compile 'com.hebin:hxbr:1.0.2'
 ```
 说到jcenter，就顺便提一下遇到的坑；网上已经有很多关于上传安卓项目到jcenter的教程了，但是大多数都只是适用于java写的Android项目，如果项目中包含了kt的文件，那么就会报错；
 ![这里写图片描述](https://github.com/Hebin320/hxbt/blob/master/img/image.jpg)
@@ -70,6 +70,16 @@ loadBoolean("infoKey")
 2、**选择类型控件**
 
 常用的选择控件有CheckBox、RadioButton、Switch等等，我们经常使用到的，就是选中状态变化的监听事件，下面写几个例子，进行对比一下;
+
+```
+// 单选 ——> 类型、RadioButton
+arrayListOf(radioButton_01,radioButton_02).onlyRadioButton()
+// 单选 ——> 类型、CheckBox
+arrayListOf(checkBox_01,checkBox_02).onlyCheckBox()
+// 单选 ——> 类型、Switch
+arrayListOf(switch_01,switch_02).onlySwitch()
+```
+
 
 ```
       // 正常写法， 选中的时候，执行Toast事件
@@ -149,8 +159,10 @@ recyclerview.layoutManager = layoutManager
 使用了库之后
 
 ```
-// 设置线性布局
-recyclerView.setLinearLayoutManager(this)
+// 设置垂直线性布局
+recyclerView.setVerticalLinear(this)
+//设置水平线性布局
+recyclerView.setHorizontalLinear(this)
 // 设置九宫格布局
 recyclerView.setGridLayoutManager(this,2)
 // 设置垂直的瀑布流布局
@@ -164,6 +176,10 @@ recyclerView.setHorizontalStaggered(2)
 view.setVisible()
 view.setGone()
 view.setInvisible()
+```
+```
+string.isEmpty { showToast("字符串为空") }
+string.isNotEmpty { showToast("字符串不为空") }
 ```
 
 ```
