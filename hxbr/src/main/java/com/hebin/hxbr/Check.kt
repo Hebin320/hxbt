@@ -57,6 +57,16 @@ inline fun Switch.checkOrNot(noinline isCheck: (switch: CompoundButton) -> Unit,
         }
     }
 }
+/**
+ *  是否被选中
+ * */
+inline fun Boolean.checkOrNot(noinline isCheck: () -> Unit, noinline isNotCheck: () -> Unit) {
+    if (this) {
+        isCheck()
+    } else {
+        isNotCheck()
+    }
+}
 
 /**
  *  选中
@@ -123,3 +133,4 @@ inline fun Switch.isNotCheck(noinline isNotCheck: (switch: CompoundButton) -> Un
         }
     }
 }
+

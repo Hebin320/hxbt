@@ -22,10 +22,20 @@ import android.support.v7.widget.StaggeredGridLayoutManager
 
 
 /**
- *  设置线性布局
+ *  设置垂直线性布局
  * */
-inline fun RecyclerView.setLinearLayoutManager(context: Context) {
+inline fun RecyclerView.setVerticalLinear(context: Context) {
     val layoutManager = LinearLayoutManager(context)
+    layoutManager.orientation = LinearLayoutManager.VERTICAL
+    this.layoutManager = layoutManager
+}
+
+/**
+ *  设置水平线性布局
+ * */
+inline fun RecyclerView.setHorizontalLinear(context: Context) {
+    val layoutManager = LinearLayoutManager(context)
+    layoutManager.orientation = LinearLayoutManager.HORIZONTAL
     this.layoutManager = layoutManager
 }
 

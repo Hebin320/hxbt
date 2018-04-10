@@ -16,6 +16,9 @@ import android.view.View
  * describe：
  */
 
+/**
+ *  是否为0
+ * */
 inline fun Int.zeroOrNot(isZero: () -> Unit, isNotZero: () -> Unit) {
     if (0 == this) {
         isZero()
@@ -24,6 +27,9 @@ inline fun Int.zeroOrNot(isZero: () -> Unit, isNotZero: () -> Unit) {
     }
 }
 
+/**
+ *  是否为最后一行
+ * */
 inline fun lastOrNot(position: Int, all: Int, isLast: () -> Unit, isNotLast: () -> Unit) {
     if (position == all - 1) {
         isLast()
@@ -32,6 +38,27 @@ inline fun lastOrNot(position: Int, all: Int, isLast: () -> Unit, isNotLast: () 
     }
 }
 
+/**
+ *  字符串是否为空
+ * */
+inline fun String.isEmpty(isEmpty: () -> Unit) {
+    if (this.isEmpty()) {
+        isEmpty()
+    }
+}
+
+/**
+ *  字符串是否为空
+ * */
+inline fun String.isNotEmpty(isNotEmpty: () -> Unit) {
+    if (this.isNotEmpty()) {
+        isNotEmpty()
+    }
+}
+
+/**
+ *  字符串是否为空
+ * */
 inline fun String.emptyOrNot(isEmpty: () -> Unit, isNotEmpty: () -> Unit) {
     if (this.isEmpty()) {
         isEmpty()
@@ -40,6 +67,9 @@ inline fun String.emptyOrNot(isEmpty: () -> Unit, isNotEmpty: () -> Unit) {
     }
 }
 
+/**
+ *  多个字符串全部不为空或者部分为空
+ * */
 inline fun ArrayList<String>.allNotEmpty(allNotEmpty: () -> Unit, someOneEmpty: () -> Unit) {
     var isAllEmpty = true
     for (string in this) {
@@ -53,6 +83,10 @@ inline fun ArrayList<String>.allNotEmpty(allNotEmpty: () -> Unit, someOneEmpty: 
         someOneEmpty()
     }
 }
+
+/**
+ *  多个字符串全部为空或者部分不为空
+ * */
 inline fun ArrayList<String>.allEmpty(allEmpty: () -> Unit, someOneNotEmpty: () -> Unit) {
     var isAllEmpty = true
     for (string in this) {
@@ -67,14 +101,23 @@ inline fun ArrayList<String>.allEmpty(allEmpty: () -> Unit, someOneNotEmpty: () 
     }
 }
 
+/**
+ *  显示布局
+ * */
 inline fun View.setVisible() {
     this.visibility = View.VISIBLE
 }
 
+/**
+ *  隐藏布局
+ * */
 inline fun View.setGone() {
     this.visibility = View.GONE
 }
 
+/**
+ *  占位隐藏布局
+ * */
 inline fun View.setInvisible() {
     this.visibility = View.INVISIBLE
 }
