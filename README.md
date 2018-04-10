@@ -13,18 +13,18 @@
 项目我已经传到了jcenter上，可以直接通过gradle导入到项目中；
 
 ```
-compile 'com.hebin:hxb:1.0.2'
+compile 'com.hebin:hxbr:1.0.0'
 ```
 说到jcenter，就顺便提一下遇到的坑；网上已经有很多关于上传安卓项目到jcenter的教程了，但是大多数都只是适用于java写的Android项目，如果项目中包含了kt的文件，那么就会报错；
 ![这里写图片描述](https://github.com/Hebin320/hxbt/blob/master/img/image.jpg)
 这种错误，百度出来基本都是什么编码问题，要添加UTF-8的识别之类的，其实不然，只是因为不能识别kt文件才报的错误，解决方案就是在项目的bulid.gradle中添加：
 
 ```
-//非常重要，要不它不认识你的项目.kt文件名 其中hxb是你的library名
-tasks.getByPath(":hxb:releaseAndroidJavadocs").enabled = false
+//非常重要，要不它不认识你的项目.kt文件名 其中hxbr是你的library名
+tasks.getByPath(":hxbr:releaseAndroidJavadocs").enabled = false
 ```
 
-## hxb有什么用？
+## hxbr有什么用？
 
 言归正传，下面举几个例子来讲讲这个库的用法；
 
