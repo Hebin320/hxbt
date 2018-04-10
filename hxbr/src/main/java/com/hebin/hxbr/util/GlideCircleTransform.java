@@ -1,4 +1,4 @@
-package com.hebin.hxb.util;
+package com.hebin.hxbr.util;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -9,6 +9,17 @@ import android.graphics.Paint;
 import com.bumptech.glide.load.engine.bitmap_recycle.BitmapPool;
 import com.bumptech.glide.load.resource.bitmap.BitmapTransformation;
 
+/**
+ * Author Hebin
+ * <p>
+ * created at 2018/4/9 10:54
+ * <p>
+ * blog: http://blog.csdn.net/hebin320320
+ * <p>
+ * GitHub: https://github.com/Hebin320
+ * <p>
+ * describe：重写Glide，加载圆形图片
+ */
 public class GlideCircleTransform extends BitmapTransformation {
     public GlideCircleTransform(Context context) {
         super(context);

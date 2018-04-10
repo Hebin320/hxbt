@@ -1,6 +1,6 @@
 @file:Suppress("NOTHING_TO_INLINE")
 
-package com.hebin.hxb
+package com.hebin.hxbr
 
 import android.widget.CheckBox
 import android.widget.CompoundButton
@@ -19,6 +19,9 @@ import android.widget.Switch
  * describe：
  */
 
+/**
+ *  是否被选中
+ * */
 inline fun RadioButton.checkOrNot(noinline isCheck: (radioButton: CompoundButton) -> Unit, noinline isNotCheck: (radioButton: CompoundButton) -> Unit) {
     this.setOnCheckedChangeListener { compoundButton, b ->
         if (b) {
@@ -29,6 +32,9 @@ inline fun RadioButton.checkOrNot(noinline isCheck: (radioButton: CompoundButton
     }
 }
 
+/**
+ *  是否被选中
+ * */
 inline fun CheckBox.checkOrNot(noinline isCheck: (checkBox: CompoundButton) -> Unit, noinline isNotCheck: (checkBox: CompoundButton) -> Unit) {
     this.setOnCheckedChangeListener { compoundButton, b ->
         if (b) {
@@ -39,6 +45,9 @@ inline fun CheckBox.checkOrNot(noinline isCheck: (checkBox: CompoundButton) -> U
     }
 }
 
+/**
+ *  是否被选中
+ * */
 inline fun Switch.checkOrNot(noinline isCheck: (switch: CompoundButton) -> Unit, noinline isNotCheck: (switch: CompoundButton) -> Unit) {
     this.setOnCheckedChangeListener { compoundButton, b ->
         if (b) {
@@ -49,6 +58,9 @@ inline fun Switch.checkOrNot(noinline isCheck: (switch: CompoundButton) -> Unit,
     }
 }
 
+/**
+ *  选中
+ * */
 inline fun RadioButton.isCheck(noinline isCheck: (radioButton: CompoundButton) -> Unit) {
     this.setOnCheckedChangeListener { compoundButton, b ->
         if (b) {
@@ -56,6 +68,10 @@ inline fun RadioButton.isCheck(noinline isCheck: (radioButton: CompoundButton) -
         }
     }
 }
+
+/**
+ *  选中
+ * */
 inline fun CheckBox.isCheck(noinline isCheck: (checkBox: CompoundButton) -> Unit) {
     this.setOnCheckedChangeListener { compoundButton, b ->
         if (b) {
@@ -64,6 +80,9 @@ inline fun CheckBox.isCheck(noinline isCheck: (checkBox: CompoundButton) -> Unit
     }
 }
 
+/**
+ *  选中
+ * */
 inline fun Switch.isCheck(noinline isCheck: (switch: CompoundButton) -> Unit) {
     this.setOnCheckedChangeListener { compoundButton, b ->
         if (b) {
@@ -72,6 +91,9 @@ inline fun Switch.isCheck(noinline isCheck: (switch: CompoundButton) -> Unit) {
     }
 }
 
+/**
+ *  未选中
+ * */
 inline fun RadioButton.isNotCheck(noinline isNotCheck: (radioButton: CompoundButton) -> Unit) {
     this.setOnCheckedChangeListener { compoundButton, b ->
         if (!b) {
@@ -80,6 +102,9 @@ inline fun RadioButton.isNotCheck(noinline isNotCheck: (radioButton: CompoundBut
     }
 }
 
+/**
+ *  未选中
+ * */
 inline fun CheckBox.isNotCheck(noinline isNotCheck: (checkBox: CompoundButton) -> Unit) {
     this.setOnCheckedChangeListener { compoundButton, b ->
         if (!b) {
@@ -88,6 +113,9 @@ inline fun CheckBox.isNotCheck(noinline isNotCheck: (checkBox: CompoundButton) -
     }
 }
 
+/**
+ *  未选中
+ * */
 inline fun Switch.isNotCheck(noinline isNotCheck: (switch: CompoundButton) -> Unit) {
     this.setOnCheckedChangeListener { compoundButton, b ->
         if (!b) {

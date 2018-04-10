@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/hxb/hxb.iml" filepath="$PROJECT_DIR$/hxb/hxb.iml" />
+      <module fileurl="file://$PROJECT_DIR$/hxbr/hxb.iml" filepath="$PROJECT_DIR$/hxbr/hxb.iml" />
       <module fileurl="file://$PROJECT_DIR$/hxbt.iml" filepath="$PROJECT_DIR$/hxbt.iml" />
     </modules>
   </component>

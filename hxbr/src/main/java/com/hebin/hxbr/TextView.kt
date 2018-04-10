@@ -1,6 +1,6 @@
 @file:Suppress("NOTHING_TO_INLINE")
 
-package com.hebin.hxb
+package com.hebin.hxbr
 
 import android.view.View
 

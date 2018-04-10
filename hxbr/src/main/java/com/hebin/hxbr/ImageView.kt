@@ -1,11 +1,10 @@
 @file:Suppress("NOTHING_TO_INLINE")
 
-package com.hebin.hxb
+package com.hebin.hxbr
 
-import android.app.Activity
 import android.content.Context
 import android.widget.ImageView
-import com.hebin.utils.ImageUtil
+import com.hebin.hxbr.util.ImageUtil
 
 /**
  * Author Hebin
@@ -19,8 +18,18 @@ import com.hebin.utils.ImageUtil
  * describe：
  */
 
+
+/**
+ *  加载圆形图片
+ * */
 inline fun Context.glideCircleImage(url: Any, imageView: ImageView) = ImageUtil.glideCircleImage(this, url, imageView)
 
+/**
+ *  加载正常图片
+ * */
 inline fun Context.glideNormalImage(url: Any, imageView: ImageView) = ImageUtil.glideNormalImage(this, url, imageView)
 
+/**
+ *  加载圆角图片
+ * */
 inline fun Context.glideRoundImage(url: Any, roundSize: Int, imageView: ImageView) = ImageUtil.glideRoundImage(this, url, roundSize, imageView)

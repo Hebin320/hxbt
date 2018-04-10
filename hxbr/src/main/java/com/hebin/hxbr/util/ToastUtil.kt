@@ -1,6 +1,6 @@
 @file:Suppress("NOTHING_TO_INLINE")
 
-package com.hebin.hxb.util
+package com.hebin.hxbr.util
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -8,7 +8,7 @@ import android.util.Log
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.widget.Toast
-import com.hebin.hxb.R
+import com.hebin.hxbr.R
 import kotlinx.android.synthetic.main.layout_simple_toast.view.*
 
 
@@ -50,6 +50,19 @@ class ToastUtil {
             oneTime = twoTime
         }
 
+        /**
+         * 网络连接失败时的Toast
+         */
+        fun showErro(context: Context) {
+            showToast(context, "请检查你的网络连接")
+        }
+
+        /**
+         * 获取失败，请稍后重试的Toast
+         */
+        fun showGetFail(context: Context) {
+            showToast(context, "获取失败，请稍后重试")
+        }
 
         fun printData(string: String) {
             println("Hebin$string")

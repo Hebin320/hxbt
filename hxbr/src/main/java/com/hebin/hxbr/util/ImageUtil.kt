@@ -1,15 +1,14 @@
-package com.hebin.utils
+package com.hebin.hxbr.util
 
-import android.app.Activity
 import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.widget.ImageView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.util.Util
-import com.hebin.hxb.R
-import com.hebin.hxb.util.GlideCircleTransform
-import com.hebin.hxb.util.GlideRoundTransform
+import com.hebin.hxbr.R
+import com.hebin.hxbr.util.GlideCircleTransform
+import com.hebin.hxbr.util.GlideRoundTransform
 
 
 @Suppress("DEPRECATION")
@@ -27,6 +26,9 @@ class ImageUtil {
             return BitmapFactory.decodeFile(file, options)
         }
 
+        /**
+        *  加载圆角图片
+        * */
         fun glideRoundImage(context: Context, url: Any, roundSize: Int, imageView: ImageView) {
             if (Util.isOnMainThread()) {
                 Glide.with(context)
@@ -40,6 +42,9 @@ class ImageUtil {
             }
         }
 
+        /**
+        *  加载圆形图片
+        * */
         fun glideCircleImage(context: Context, url: Any, imageView: ImageView) {
             if (Util.isOnMainThread()) {
                 Glide.with(context)
@@ -53,6 +58,9 @@ class ImageUtil {
             }
         }
 
+        /**
+        *  加载正常的图片
+        * */
         fun glideNormalImage(context: Context, url: Any, imageView: ImageView) {
             if (Util.isOnMainThread()) {
                 Glide.with(context)

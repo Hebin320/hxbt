@@ -1,6 +1,6 @@
 @file:Suppress("NOTHING_TO_INLINE")
 
-package com.hebin.hxb.util
+package com.hebin.hxbr.util
 
 import android.app.Activity
 import android.graphics.Point
@@ -14,6 +14,9 @@ import android.view.WindowManager
 class WindowUtil {
 
     companion object {
+        /**
+        *  获取状态栏高度
+        * */
         fun getStatusbar(activity: Activity): Int {
             val rectangle = Rect()
             val window = activity.window
@@ -21,6 +24,9 @@ class WindowUtil {
             return rectangle.top
         }
 
+        /**
+        *  获取屏幕宽度
+        * */
         fun getSwidth(activity: Activity): Int {
             var realWidth = 0
             try {
@@ -45,6 +51,9 @@ class WindowUtil {
             return realWidth
         }
 
+        /**
+        *  获取屏幕高度
+        * */
         fun getShigh(activity: Activity): Int {
             var realHeight = 0
             try {
@@ -68,6 +77,9 @@ class WindowUtil {
             return realHeight
         }
 
+        /**
+        *  全屏显示
+        * */
         fun setFullScreen(activity: Activity) {
             activity.window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                     WindowManager.LayoutParams.FLAG_FULLSCREEN)
