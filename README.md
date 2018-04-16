@@ -14,7 +14,7 @@
 项目我已经传到了jcenter上，可以直接通过gradle导入到项目中；
 
 ```
-compile 'com.hebin:hxbr:1.0.2'
+compile 'com.hebin:hxbr:1.0.4'
 ```
 说到jcenter，就顺便提一下遇到的坑；网上已经有很多关于上传安卓项目到jcenter的教程了，但是大多数都只是适用于java写的Android项目，如果项目中包含了kt的文件，那么就会报错；
 ![这里写图片描述](https://github.com/Hebin320/hxbt/blob/master/img/image.jpg)
