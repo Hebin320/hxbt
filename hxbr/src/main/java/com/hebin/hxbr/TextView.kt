@@ -2,12 +2,10 @@
 
 package com.hebin.hxbr
 
-import android.support.v7.app.AppCompatActivity
-import android.support.v7.widget.RecyclerView
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.View
-import android.widget.CheckBox
-import android.widget.RadioButton
-import android.widget.Switch
+import android.widget.EditText
 
 /**
  * Author Hebin
@@ -126,3 +124,45 @@ inline fun View.setGone() {
 inline fun View.setInvisible() {
     this.visibility = View.INVISIBLE
 }
+
+// 时时监听EditText的文本变化
+inline fun EditText.addTextChangedListener(listener: HxbrTextWatcher) {
+    this.addTextChangedListener(object : TextWatcher {
+        override fun afterTextChanged(p0: Editable?) {
+            listener.afterTextChanged(p0)
+        }
+
+        override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+            listener.beforeTextChanged(p0, p1, p2, p3)
+        }
+
+        override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+            listener.onTextChanged(p0, p1, p2, p3)
+        }
+    })
+}
+
+inline fun EditText.addTextChangedListener(noinline afterTextChanged: (p0: Editable) -> Unit,
+                                           noinline beforeTextChanged: (p0: CharSequence, p1: Int, p2: Int, p3: Int) -> Unit,
+                                           noinline onTextChanged: (p0: CharSequence, p1: Int, p2: Int, p3: Int) -> Unit) {
+    this.addTextChangedListener(object : TextWatcher {
+        override fun afterTextChanged(p0: Editable) {
+            afterTextChanged(p0)
+        }
+
+        override fun beforeTextChanged(p0: CharSequence, p1: Int, p2: Int, p3: Int) {
+            beforeTextChanged(p0, p1, p2, p3)
+        }
+
+        override fun onTextChanged(p0: CharSequence, p1: Int, p2: Int, p3: Int) {
+            onTextChanged(p0, p1, p2, p3)
+        }
+    })
+}
+
+interface HxbrTextWatcher {
+    fun afterTextChanged(p0: Editable?) {}
+    fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
+    fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
+}
+

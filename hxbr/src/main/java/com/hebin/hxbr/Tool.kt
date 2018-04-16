@@ -42,7 +42,7 @@ inline fun Context.getImei(): String {
 /**
  * 获取版本名称
  */
-inline fun Context.getVersion(): String {
+inline fun Context.getVersionName(): String {
     return try {
         val manager = this.packageManager.getPackageInfo(
                 this.packageName, 0)
@@ -55,7 +55,7 @@ inline fun Context.getVersion(): String {
 /**
  * 获取版本号
  */
-inline fun Context.getlocalVersion(): Int {
+inline fun Context.getVersionCode(): Int {
     var localversion = 0
     try {
         val info = this.packageManager.getPackageInfo(this.packageName, 0)
@@ -83,4 +83,5 @@ inline fun listToString(list: ArrayList<String>): String {
     }
     return sb.toString()
 }
+
 

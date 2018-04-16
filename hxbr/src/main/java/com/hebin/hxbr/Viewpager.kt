@@ -2,7 +2,6 @@
 
 package com.hebin.hxbr
 
-import android.content.Context
 import android.support.v4.view.ViewPager
 import android.widget.RadioButton
 
@@ -35,7 +34,7 @@ inline fun ViewPager.setRBCheck(radioButton: Array<RadioButton>) {
     }
 }
 
-inline fun ViewPager.addOnPageChangeListener(listener: OnPageChangeListener) {
+inline fun ViewPager.addOnPageChangeListener(listener: HxbrPageChangeListener) {
     this.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
         override fun onPageScrollStateChanged(state: Int) {
             listener.onPageScrollStateChanged(state)
@@ -69,9 +68,10 @@ inline fun ViewPager.addOnPageChangeListener(noinline onPageSelected: (position:
     })
 }
 
-interface OnPageChangeListener {
+interface HxbrPageChangeListener {
     fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {}
     fun onPageSelected(position: Int) {}
     fun onPageScrollStateChanged(state: Int) {}
 }
+
 
