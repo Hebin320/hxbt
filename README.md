@@ -1,4 +1,6 @@
 # hxbt
+[更新日志][2]
+
 # 前言
 
 **注意：本文针对kotlin开发android项目的开发者，以下方法只在kotlin中有效。**
@@ -278,3 +280,4 @@ setTimer(6000,1000,
 ---------
 
 [1]: https://github.com/Kotlin/anko
+[2]:https://github.com/Hebin320/hxbt/blob/master/UpdateLog.md
