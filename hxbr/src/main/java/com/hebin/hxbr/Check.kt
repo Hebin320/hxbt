@@ -2,10 +2,7 @@
 
 package com.hebin.hxbr
 
-import android.widget.CheckBox
-import android.widget.CompoundButton
-import android.widget.RadioButton
-import android.widget.Switch
+import android.widget.*
 
 /**
  * Author Hebin
@@ -57,6 +54,7 @@ inline fun Switch.checkOrNot(noinline isCheck: (switch: CompoundButton) -> Unit,
         }
     }
 }
+
 /**
  *  是否被选中
  * */
@@ -184,3 +182,4 @@ inline fun ArrayList<Switch>.onlySwitch() {
         }
     }
 }
+
