@@ -1,3 +1,42 @@
+# v1.0.5
+
+
+
+ - 获取文本
+
+```
+textView.getString()
+editText.getString()
+button.getString()
+radioButton.getString()
+checkBox.getString()
+```
+
+ - 获取颜色
+ 
+```
+getColors(R.color.white)
+getColors("#FFFFFF")
+```
+
+ - 给TextView、EditView、Button、RadioButton、CheckBox设置字体颜色
+ 
+```
+textView.setTextColor(context,R.color.white)
+textView.setTextColor("#FFFFFF")
+```
+
+ -  Any类型强转
+```
+any.asInt()
+any.asString()
+any.asBoolean()
+any.asFloat()
+```
+
+
+----------
+
 # v1.0.4
 
 
