@@ -1,3 +1,81 @@
+# v1.0.6
+
+
+
+ - 动态设置控件宽高
+
+```
+// 高度全屏，设置宽度
+imageView.widths = 60
+// 宽度全屏，设置高度
+imageView.heights = 60
+// 同时设置宽高
+imageView.setHeigthAndWidth(width,height)
+
+// 以上方法，适用于控件父布局为ConstraintLayout、FrameLayout、LinearLayout、RelativeLayout，
+// 在import的时候，注意看清楚
+```
+
+ - 判断不为null
+ 
+```
+Any.isNotNull{}
+```
+
+ - 给TextView、EditView、Button、RadioButton、CheckBox设置字体颜色
+ 
+```
+textView.textColor = "#FFFFFF"
+```
+
+ -  给EditText设置文本
+```
+editText.texts = "我是谁"
+```
+ -  设置背景颜色（代码）
+```
+view.backgroundColor = "#FFFFFF"
+```
+
+ -  长按事件
+```
+view.onLongClickListener {  }
+```
+-  双击事件
+```
+// 双击间隔小于1500毫秒时执行操作
+view.onDoubleClickListener { }
+```
+- 给月份或者日期前面加0
+
+```
+// 有时候后台要求日期显示格式为“2018-04-07”，而我们得到的是“2018-4-7”，这时候需要在月份跟日期上做判断转换
+val day = 4.addZero() // 输出结果04
+val day = "4".addZero() // 输出结果04
+val day = 17.addZero() // 输出结果17
+```
+- 创建View
+
+```
+val view = creatView(layoutId)
+// 或者
+val view = creatView(layoutId,viewGroup)
+```
+- 获取Recyclerview滚动过的Y轴距离
+
+```
+val y = recyclerview.getScollYDistance()
+```
+- 设置动画
+
+```
+view.setAnimation(context,anim)
+```
+
+
+----------
+
+
 # v1.0.5
 
 
