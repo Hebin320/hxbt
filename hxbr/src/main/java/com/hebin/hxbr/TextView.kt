@@ -1,11 +1,17 @@
-@file:Suppress("NOTHING_TO_INLINE")
+@file:Suppress("NOTHING_TO_INLINE", "SENSELESS_COMPARISON")
 
 package com.hebin.hxbr
 
+import android.content.Context
+import android.graphics.Color
+import android.support.annotation.DrawableRes
+import android.support.v4.content.ContextCompat
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
-import android.widget.EditText
+import android.widget.*
+import org.jetbrains.anko.backgroundColor
+import org.jetbrains.anko.internals.AnkoInternals
 
 /**
  * Author Hebin
@@ -56,6 +62,13 @@ inline fun String.isEmpty(isEmpty: () -> Unit) {
 inline fun String.isNotEmpty(isNotEmpty: () -> Unit) {
     if (this.isNotEmpty()) {
         isNotEmpty()
+    }
+}
+
+// 不为空
+inline fun Any.isNotNull(noinline isNotNull: () -> Unit) {
+    if (this != null) {
+        isNotNull()
     }
 }
 
@@ -142,20 +155,34 @@ inline fun EditText.addTextChangedListener(listener: HxbrTextWatcher) {
     })
 }
 
-inline fun EditText.addTextChangedListener(noinline afterTextChanged: (p0: Editable) -> Unit,
-                                           noinline beforeTextChanged: (p0: CharSequence, p1: Int, p2: Int, p3: Int) -> Unit,
-                                           noinline onTextChanged: (p0: CharSequence, p1: Int, p2: Int, p3: Int) -> Unit) {
+inline fun EditText.addTextChangedListener(noinline mAfterTextChanged: (p0: Editable) -> Unit,
+                                           noinline mBeforeTextChanged: (p0: CharSequence, p1: Int, p2: Int, p3: Int) -> Unit,
+                                           noinline mOnTextChanged: (p0: CharSequence, p1: Int, p2: Int, p3: Int) -> Unit) {
     this.addTextChangedListener(object : TextWatcher {
         override fun afterTextChanged(p0: Editable) {
-            afterTextChanged(p0)
+            mAfterTextChanged(p0)
         }
 
         override fun beforeTextChanged(p0: CharSequence, p1: Int, p2: Int, p3: Int) {
-            beforeTextChanged(p0, p1, p2, p3)
+            mBeforeTextChanged(p0, p1, p2, p3)
         }
 
         override fun onTextChanged(p0: CharSequence, p1: Int, p2: Int, p3: Int) {
-            onTextChanged(p0, p1, p2, p3)
+            mOnTextChanged(p0, p1, p2, p3)
+        }
+    })
+}
+
+inline fun EditText.addTextChangedListener(noinline mAfterTextChanged: (p0: Editable) -> Unit) {
+    this.addTextChangedListener(object : TextWatcher {
+        override fun afterTextChanged(p0: Editable) {
+            mAfterTextChanged(p0)
+        }
+
+        override fun beforeTextChanged(p0: CharSequence, p1: Int, p2: Int, p3: Int) {
+        }
+
+        override fun onTextChanged(p0: CharSequence, p1: Int, p2: Int, p3: Int) {
         }
     })
 }
@@ -166,3 +193,99 @@ interface HxbrTextWatcher {
     fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
 }
 
+// 获取文本
+inline fun EditText.getString(): String {
+    return this.text.toString()
+}
+
+// 获取文本
+inline fun TextView.getString(): String {
+    return this.text.toString()
+}
+
+// 获取文本
+inline fun Button.getString(): String {
+    return this.text.toString()
+}
+
+// 获取文本
+inline fun RadioButton.getString(): String {
+    return this.text.toString()
+}
+
+// 获取文本
+inline fun CheckBox.getString(): String {
+    return this.text.toString()
+}
+
+// 获取颜色
+inline fun Context.getColors(color: Int) = ContextCompat.getColor(this, color)
+
+// 获取颜色
+inline fun getColors(color: String) = Color.parseColor(color)
+
+// 设置字体颜色
+inline fun TextView.setTextColor(context: Context, color: Int) = this.setTextColor(ContextCompat.getColor(context, color))
+
+// 设置字体颜色
+inline fun EditText.setTextColor(context: Context, color: Int) = this.setTextColor(ContextCompat.getColor(context, color))
+
+// 设置字体颜色
+inline fun Button.setTextColor(context: Context, color: Int) = this.setTextColor(ContextCompat.getColor(context, color))
+
+// 设置字体颜色
+inline fun RadioButton.setTextColor(context: Context, color: Int) = this.setTextColor(ContextCompat.getColor(context, color))
+
+// 设置字体颜色
+inline fun CheckBox.setTextColor(context: Context, color: Int) = this.setTextColor(ContextCompat.getColor(context, color))
+
+// 设置字体颜色
+inline fun TextView.setTextColors(color: String) = this.setTextColor(Color.parseColor(color))
+
+var TextView.textColor: String
+    @Deprecated(AnkoInternals.NO_GETTER, level = DeprecationLevel.ERROR) get() = AnkoInternals.noGetter()
+    set(v) = setTextColors(v)
+
+// 设置字体颜色
+inline fun EditText.setTextColors(color: String) = this.setTextColor(Color.parseColor(color))
+
+var EditText.textColor: String
+    @Deprecated(AnkoInternals.NO_GETTER, level = DeprecationLevel.ERROR) get() = AnkoInternals.noGetter()
+    set(v) = setTextColors(v)
+
+// 设置字体颜色
+inline fun Button.setTextColors(color: String) = this.setTextColor(Color.parseColor(color))
+
+var Button.textColor: String
+    @Deprecated(AnkoInternals.NO_GETTER, level = DeprecationLevel.ERROR) get() = AnkoInternals.noGetter()
+    set(v) = setTextColors(v)
+
+// 设置字体颜色
+inline fun RadioButton.setTextColors(color: String) = this.setTextColor(Color.parseColor(color))
+
+var RadioButton.textColor: String
+    @Deprecated(AnkoInternals.NO_GETTER, level = DeprecationLevel.ERROR) get() = AnkoInternals.noGetter()
+    set(v) = setTextColors(v)
+
+// 设置字体颜色
+inline fun CheckBox.setTextColors(color: String) = this.setTextColor(Color.parseColor(color))
+
+var CheckBox.textColor: String
+    @Deprecated(AnkoInternals.NO_GETTER, level = DeprecationLevel.ERROR) get() = AnkoInternals.noGetter()
+    set(v) = setTextColors(v)
+
+inline fun EditText.setEdTexts(string: String) {
+    this.setText(string)
+}
+
+var EditText.texts: String
+    @Deprecated(AnkoInternals.NO_GETTER, level = DeprecationLevel.ERROR) get() = AnkoInternals.noGetter()
+    set(v) = setEdTexts(v)
+
+inline fun View.setBackGroundColor(color: String) {
+    this.backgroundColor = getColors(color)
+}
+
+var View.backgroundColor: String
+    @Deprecated(AnkoInternals.NO_GETTER, level = DeprecationLevel.ERROR) get() = AnkoInternals.noGetter()
+    set(v) = setBackGroundColor(v)

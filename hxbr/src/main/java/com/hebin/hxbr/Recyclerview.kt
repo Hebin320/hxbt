@@ -62,3 +62,12 @@ inline fun RecyclerView.setHorizontalStaggered(count: Int) {
     val layoutManager = StaggeredGridLayoutManager(count, StaggeredGridLayoutManager.HORIZONTAL)
     this.layoutManager = layoutManager
 }
+
+// 获取Recyclerview滚动过的距离
+inline fun RecyclerView.getScollYDistance(): Int {
+    val layoutManager = this.layoutManager as LinearLayoutManager
+    val position = layoutManager.findFirstVisibleItemPosition()
+    val firstVisiableChildView = layoutManager.findViewByPosition(position)
+    val itemHeight = firstVisiableChildView.height
+    return (itemHeight * position) - firstVisiableChildView.top
+}

@@ -31,12 +31,15 @@ android {
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    //noinspection GradleCompatible
     implementation 'com.android.support:appcompat-v7:26.1.0'
+    implementation 'com.android.support.constraint:constraint-layout:1.1.0'
     testImplementation 'junit:junit:4.12'
     compile 'com.github.bumptech.glide:glide:3.7.0'
     compile "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     compile 'com.android.support:recyclerview-v7:26.1.0'
+    compile "org.jetbrains.anko:anko:$anko_version"
 }
 
 sourceSets {
@@ -49,20 +52,20 @@ allprojects {
     }
     //加上这些
     tasks.withType(Javadoc) {
-        options{ encoding "UTF-8"
+        options {
+            encoding "UTF-8"
             charSet 'UTF-8'
             links "http://docs.oracle.com/javase/7/docs/api"
         }
     }
 }
 
-
 //添加
 publish {
     userOrg = 'hxb1083019222'
     groupId = 'com.hebin'
     artifactId = 'hxbr'
-    publishVersion = '1.0.4'
+    publishVersion = '1.0.6'
     desc = 'This is a tool that helps developers develop kotlin projects quickly.'
     website = 'https://github.com/Hebin320/hxbt'
 }

@@ -1,1 +1,1 @@
-include ':hxbr'
+include ':hxbr', ':app'

@@ -3,6 +3,7 @@
 package com.hebin.hxbr
 
 import android.support.v4.view.ViewPager
+import android.support.v7.app.AppCompatActivity
 import android.widget.RadioButton
 
 /**
@@ -50,20 +51,34 @@ inline fun ViewPager.addOnPageChangeListener(listener: HxbrPageChangeListener) {
     })
 }
 
-inline fun ViewPager.addOnPageChangeListener(noinline onPageSelected: (position: Int) -> Unit,
-                                             noinline onPageScrollStateChanged: (state: Int) -> Unit,
-                                             noinline onPageScrolled: (position: Int, positionOffset: Float, positionOffsetPixels: Int) -> Unit) {
+inline fun ViewPager.addOnPageChangeListener(noinline mOnPageSelected: (position: Int) -> Unit,
+                                             noinline mOnPageScrollStateChanged: (state: Int) -> Unit,
+                                             noinline mOnPageScrolled: (position: Int, positionOffset: Float, positionOffsetPixels: Int) -> Unit) {
     this.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
         override fun onPageScrollStateChanged(state: Int) {
-            onPageScrollStateChanged(state)
+            mOnPageScrollStateChanged(state)
         }
 
         override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
-            onPageScrolled(position, positionOffset, positionOffsetPixels)
+            mOnPageScrolled(position, positionOffset, positionOffsetPixels)
         }
 
         override fun onPageSelected(position: Int) {
-            onPageSelected(position)
+            mOnPageSelected(position)
+        }
+    })
+}
+
+inline fun ViewPager.addOnPageChangeListener(noinline mOnPageSelected: (position: Int) -> Unit) {
+    this.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
+        override fun onPageScrollStateChanged(state: Int) {
+        }
+
+        override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
+        }
+
+        override fun onPageSelected(position: Int) {
+            mOnPageSelected(position)
         }
     })
 }
@@ -73,5 +88,3 @@ interface HxbrPageChangeListener {
     fun onPageSelected(position: Int) {}
     fun onPageScrollStateChanged(state: Int) {}
 }
-
-

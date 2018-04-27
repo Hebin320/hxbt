@@ -7,6 +7,7 @@ import android.content.Context
 import android.content.pm.PackageManager
 import android.os.CountDownTimer
 import android.telephony.TelephonyManager
+import android.widget.ScrollView
 import java.util.ArrayList
 
 /**
@@ -84,4 +85,42 @@ inline fun listToString(list: ArrayList<String>): String {
     return sb.toString()
 }
 
+// Any类型强转 Int
+inline fun Any.asInt() = this as Int
 
+// Any类型强转 String
+inline fun Any.asString() = this as String
+
+// Any类型强转 Boolean
+inline fun Any.asBoolean() = this as Boolean
+
+// Any类型强转 Float
+inline fun Any.asFloat() = this as Float
+
+// 给月份或者日期前面加0
+inline fun Int.addZero(): String {
+    var date = ""
+    this.isNotNull {
+        if (this in 1..9) {
+            date = "0${this}"
+        } else if (this >= 10) {
+            date = this.toString()
+        }
+    }
+    return date
+}
+
+// 给月份或者日期前面加0
+inline fun String.addZero(): String {
+    var date = ""
+    this.isNotNull {
+        this.isNotEmpty {
+            if (this.toInt() in 1..9) {
+                date = "0${this}"
+            } else if (this.toInt() >= 10) {
+                date = this
+            }
+        }
+    }
+    return date
+}
