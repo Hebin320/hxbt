@@ -83,6 +83,7 @@ inline fun ViewPager.addOnPageChangeListener(noinline mOnPageSelected: (position
     })
 }
 
+
 interface HxbrPageChangeListener {
     fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {}
     fun onPageSelected(position: Int) {}

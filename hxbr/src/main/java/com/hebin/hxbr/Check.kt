@@ -99,6 +99,13 @@ inline fun Switch.isCheck(noinline isCheck: (switch: CompoundButton) -> Unit) {
     }
 }
 
+// 选中
+inline fun Boolean.isCheck(noinline isCheck: () -> Unit) {
+    if (this) {
+        isCheck()
+    }
+}
+
 /**
  *  未选中
  * */
@@ -129,6 +136,13 @@ inline fun Switch.isNotCheck(noinline isNotCheck: (switch: CompoundButton) -> Un
         if (!b) {
             isNotCheck(compoundButton)
         }
+    }
+}
+
+// 未选中
+inline fun Boolean.isNotCheck(noinline isNotCheck: () -> Unit) {
+    if (!this) {
+        isNotCheck()
     }
 }
 

@@ -4,13 +4,11 @@ package com.hebin.hxbr
 
 import android.content.Context
 import android.graphics.Color
-import android.support.annotation.DrawableRes
 import android.support.v4.content.ContextCompat
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
 import android.widget.*
-import org.jetbrains.anko.backgroundColor
 import org.jetbrains.anko.internals.AnkoInternals
 
 /**
@@ -282,10 +280,3 @@ var EditText.texts: String
     @Deprecated(AnkoInternals.NO_GETTER, level = DeprecationLevel.ERROR) get() = AnkoInternals.noGetter()
     set(v) = setEdTexts(v)
 
-inline fun View.setBackGroundColor(color: String) {
-    this.backgroundColor = getColors(color)
-}
-
-var View.backgroundColor: String
-    @Deprecated(AnkoInternals.NO_GETTER, level = DeprecationLevel.ERROR) get() = AnkoInternals.noGetter()
-    set(v) = setBackGroundColor(v)

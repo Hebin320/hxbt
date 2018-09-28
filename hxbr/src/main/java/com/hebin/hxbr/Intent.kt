@@ -4,6 +4,7 @@ package com.hebin.hxbr
 
 import android.app.Activity
 import android.content.Context
+import android.support.v7.app.AppCompatActivity
 
 /**
  * Author Hebin
@@ -19,20 +20,41 @@ import android.content.Context
 /**
  *  传值获取 -> 类型、字符串
  * */
-inline fun Activity.getStringExtra(mTAG: String):String {
+inline fun Activity.getStringExtra(mTAG: String): String {
     return this.intent.getStringExtra(mTAG)
 }
 
 /**
  *  传值获取 -> 类型、数字
  * */
-inline fun Activity.getIntExtra(mTAG: String):Int {
+inline fun Activity.getIntExtra(mTAG: String): Int {
     return this.intent.getIntExtra(mTAG, 0)
 }
 
 /**
  *  传值获取 -> 类型、布尔值
  * */
-inline fun Activity.getBooleanExtra(mTAG: String):Boolean {
+inline fun Activity.getBooleanExtra(mTAG: String): Boolean {
     return this.intent.getBooleanExtra(mTAG, false)
+}
+
+// 接收值，不为空
+inline fun String.intentNotNull(activity: Activity, notNull: (value: String) -> Unit) {
+    if (activity.intent.getStringExtra(this) != null) {
+        notNull.invoke(activity.intent.getStringExtra(this))
+    }
+}
+
+// 接收值，为true
+inline fun String.intentIsTrue(activity: Activity, isTrue: () -> Unit) {
+    if (activity.intent.getBooleanExtra(this, false)) {
+        isTrue.invoke()
+    }
+}
+
+// 接收值，为true
+inline fun String.intentIsFalse(activity: Activity, isFalse: () -> Unit) {
+    if (!activity.intent.getBooleanExtra(this, false)) {
+        isFalse.invoke()
+    }
 }
