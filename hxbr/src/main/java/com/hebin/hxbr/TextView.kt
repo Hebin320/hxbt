@@ -23,9 +23,50 @@ import org.jetbrains.anko.internals.AnkoInternals
  * describe：
  */
 
+
 /**
  *  是否为0
  * */
+
+inline fun Int.checkZero(init: CheckZeroListener.() -> Unit) {
+    val listener = CheckZeroListener()
+    listener.init()
+    listener.check(this)
+}
+
+class CheckZeroListener {
+    private var isZero: (() -> Unit)? = null
+    private var notZero: (() -> Unit)? = null
+
+    fun isZero(listener: () -> Unit) {
+        isZero = listener
+    }
+
+    fun notZero(listener: () -> Unit) {
+        notZero = listener
+    }
+
+    fun check(position: Int) {
+        if (position == 0) {
+            isZero?.invoke()
+        } else {
+            notZero?.invoke()
+        }
+    }
+}
+
+inline fun Int.isZero(isZero: () -> Unit) {
+    if (this == 0) {
+        isZero.invoke()
+    }
+}
+
+inline fun Int.notZero(notZero: () -> Unit) {
+    if (this != 0) {
+        notZero.invoke()
+    }
+}
+
 inline fun Int.zeroOrNot(isZero: () -> Unit, isNotZero: () -> Unit) {
     if (0 == this) {
         isZero()
@@ -37,6 +78,34 @@ inline fun Int.zeroOrNot(isZero: () -> Unit, isNotZero: () -> Unit) {
 /**
  *  是否为最后一行
  * */
+
+inline fun checkLast(position: Int, all: Int, init: CheckLastListener.() -> Unit) {
+    val listener = CheckLastListener()
+    listener.init()
+    listener.check(position, all)
+}
+
+class CheckLastListener {
+    private var isLast: (() -> Unit)? = null
+    private var notLast: (() -> Unit)? = null
+
+    fun isLast(listener: () -> Unit) {
+        isLast = listener
+    }
+
+    fun notLast(listener: () -> Unit) {
+        notLast = listener
+    }
+
+    fun check(position: Int, all: Int) {
+        if (position == all - 1) {
+            isLast?.invoke()
+        } else {
+            notLast?.invoke()
+        }
+    }
+}
+
 inline fun lastOrNot(position: Int, all: Int, isLast: () -> Unit, isNotLast: () -> Unit) {
     if (position == all - 1) {
         isLast()
@@ -73,6 +142,34 @@ inline fun Any.isNotNull(noinline isNotNull: () -> Unit) {
 /**
  *  字符串是否为空
  * */
+
+inline fun String.checkEmpty(init: CheckEmptyListener.() -> Unit) {
+    val listener = CheckEmptyListener()
+    listener.init()
+    listener.check(this)
+}
+
+class CheckEmptyListener {
+    private var isEmpty: (() -> Unit)? = null
+    private var notEmpty: (() -> Unit)? = null
+
+    fun isEmpty(listener: () -> Unit) {
+        isEmpty = listener
+    }
+
+    fun notEmpty(listener: () -> Unit) {
+        notEmpty = listener
+    }
+
+    fun check(string: String) {
+        if (string.isEmpty()) {
+            isEmpty?.invoke()
+        } else {
+            notEmpty?.invoke()
+        }
+    }
+}
+
 inline fun String.emptyOrNot(isEmpty: () -> Unit, isNotEmpty: () -> Unit) {
     if (this.isEmpty()) {
         isEmpty()

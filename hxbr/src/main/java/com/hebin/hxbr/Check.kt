@@ -16,15 +16,55 @@ import android.widget.*
  * describe：
  */
 
-/**
- *  是否被选中
- * */
-inline fun RadioButton.checkOrNot(noinline isCheck: (radioButton: CompoundButton) -> Unit, noinline isNotCheck: (radioButton: CompoundButton) -> Unit) {
-    this.setOnCheckedChangeListener { compoundButton, b ->
-        if (b) {
-            isCheck(compoundButton)
-        } else {
-            isNotCheck(compoundButton)
+class CheckOrNotListener {
+    private var isCheckBoolean: (() -> Unit)? = null
+    private var isNotCheckBoolean: (() -> Unit)? = null
+    private var isCheck: ((radioButton: CompoundButton) -> Unit)? = null
+    private var isNotCheck: ((radioButton: CompoundButton) -> Unit)? = null
+
+    fun isCheck(listener: (radioButton: CompoundButton) -> Unit) {
+        isCheck = listener
+    }
+
+    fun isNotCheck(listener: (radioButton: CompoundButton) -> Unit) {
+        isNotCheck = listener
+    }
+
+    fun check(radioButton: RadioButton) {
+        radioButton.setOnCheckedChangeListener { compoundButton, b ->
+            if (b) {
+                isCheck?.invoke(compoundButton)
+            } else {
+                isNotCheck?.invoke(compoundButton)
+            }
+        }
+    }
+
+    fun check(checkBox: CheckBox) {
+        checkBox.setOnCheckedChangeListener { compoundButton, b ->
+            if (b) {
+                isCheck?.invoke(compoundButton)
+            } else {
+                isNotCheck?.invoke(compoundButton)
+            }
+        }
+    }
+
+    fun check(switch: Switch) {
+        switch.setOnCheckedChangeListener { compoundButton, b ->
+            if (b) {
+                isCheck?.invoke(compoundButton)
+            } else {
+                isNotCheck?.invoke(compoundButton)
+            }
+        }
+    }
+
+    fun check(status:Boolean){
+        if (status){
+            isCheckBoolean?.invoke()
+        }else{
+            isNotCheckBoolean?.invoke()
         }
     }
 }
@@ -32,39 +72,35 @@ inline fun RadioButton.checkOrNot(noinline isCheck: (radioButton: CompoundButton
 /**
  *  是否被选中
  * */
-inline fun CheckBox.checkOrNot(noinline isCheck: (checkBox: CompoundButton) -> Unit, noinline isNotCheck: (checkBox: CompoundButton) -> Unit) {
-    this.setOnCheckedChangeListener { compoundButton, b ->
-        if (b) {
-            isCheck(compoundButton)
-        } else {
-            isNotCheck(compoundButton)
-        }
-    }
+inline fun RadioButton.checkOrNot(init: CheckOrNotListener.() -> Unit) {
+    val listener = CheckOrNotListener()
+    listener.init()
+    listener.check(this)
 }
+
+inline fun CheckBox.checkOrNot(init: CheckOrNotListener.() -> Unit) {
+    val listener = CheckOrNotListener()
+    listener.init()
+    listener.check(this)
+}
+
+inline fun Switch.checkOrNot(init: CheckOrNotListener.() -> Unit) {
+    val listener = CheckOrNotListener()
+    listener.init()
+    listener.check(this)
+}
+inline fun Boolean.checkOrNot(init: CheckOrNotListener.() -> Unit) {
+    val listener = CheckOrNotListener()
+    listener.init()
+    listener.check(this)
+}
+
+
 
 /**
  *  是否被选中
  * */
-inline fun Switch.checkOrNot(noinline isCheck: (switch: CompoundButton) -> Unit, noinline isNotCheck: (switch: CompoundButton) -> Unit) {
-    this.setOnCheckedChangeListener { compoundButton, b ->
-        if (b) {
-            isCheck(compoundButton)
-        } else {
-            isNotCheck(compoundButton)
-        }
-    }
-}
 
-/**
- *  是否被选中
- * */
-inline fun Boolean.checkOrNot(noinline isCheck: () -> Unit, noinline isNotCheck: () -> Unit) {
-    if (this) {
-        isCheck()
-    } else {
-        isNotCheck()
-    }
-}
 
 /**
  *  选中

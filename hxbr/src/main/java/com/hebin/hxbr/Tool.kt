@@ -7,8 +7,40 @@ import android.content.Context
 import android.content.pm.PackageManager
 import android.os.CountDownTimer
 import android.telephony.TelephonyManager
-import android.widget.ScrollView
 import java.util.ArrayList
+
+
+inline fun hxbCountDownTimer(m: Long, c: Long, init: CountDownTimerListener.() -> Unit): CountDownTimer {
+    val listener = CountDownTimerListener()
+    listener.init()
+    return listener.creatTimer(m, c)
+}
+
+class CountDownTimerListener {
+
+    private var onFinish: (() -> Unit)? = null
+    private var onTick: ((p0: Long) -> Unit)? = null
+
+    fun onFinish(listener: () -> Unit) {
+        onFinish = listener
+    }
+
+    fun onTick(listener: (p0: Long) -> Unit) {
+        onTick = listener
+    }
+
+    fun creatTimer(m: Long, c: Long): CountDownTimer {
+        return object : CountDownTimer(m, c) {
+            override fun onFinish() {
+                onFinish?.invoke()
+            }
+
+            override fun onTick(p0: Long) {
+                onTick?.invoke(p0)
+            }
+        }
+    }
+}
 
 /**
  *  倒计时
@@ -25,6 +57,7 @@ inline fun setTimer(milisInFuture: Long, countDownInterval: Long, noinline onTic
     }
     time.start()
 }
+
 
 /**
  * 获取唯一机械码
