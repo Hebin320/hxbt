@@ -35,40 +35,6 @@ inline fun ViewPager.setRBCheck(radioButton: Array<RadioButton>) {
     }
 }
 
-inline fun ViewPager.addOnPageChangeListener(listener: HxbrPageChangeListener) {
-    this.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
-        override fun onPageScrollStateChanged(state: Int) {
-            listener.onPageScrollStateChanged(state)
-        }
-
-        override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
-            listener.onPageScrolled(position, positionOffset, positionOffsetPixels)
-        }
-
-        override fun onPageSelected(position: Int) {
-            listener.onPageSelected(position)
-        }
-    })
-}
-
-inline fun ViewPager.addOnPageChangeListener(noinline mOnPageSelected: (position: Int) -> Unit,
-                                             noinline mOnPageScrollStateChanged: (state: Int) -> Unit,
-                                             noinline mOnPageScrolled: (position: Int, positionOffset: Float, positionOffsetPixels: Int) -> Unit) {
-    this.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
-        override fun onPageScrollStateChanged(state: Int) {
-            mOnPageScrollStateChanged(state)
-        }
-
-        override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
-            mOnPageScrolled(position, positionOffset, positionOffsetPixels)
-        }
-
-        override fun onPageSelected(position: Int) {
-            mOnPageSelected(position)
-        }
-    })
-}
-
 inline fun ViewPager.addOnPageChangeListener(noinline mOnPageSelected: (position: Int) -> Unit) {
     this.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
         override fun onPageScrollStateChanged(state: Int) {
@@ -83,9 +49,3 @@ inline fun ViewPager.addOnPageChangeListener(noinline mOnPageSelected: (position
     })
 }
 
-
-interface HxbrPageChangeListener {
-    fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {}
-    fun onPageSelected(position: Int) {}
-    fun onPageScrollStateChanged(state: Int) {}
-}

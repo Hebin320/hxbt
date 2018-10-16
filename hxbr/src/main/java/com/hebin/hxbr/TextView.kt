@@ -234,39 +234,6 @@ inline fun View.setInvisible() {
 }
 
 // 时时监听EditText的文本变化
-inline fun EditText.addTextChangedListener(listener: HxbrTextWatcher) {
-    this.addTextChangedListener(object : TextWatcher {
-        override fun afterTextChanged(p0: Editable?) {
-            listener.afterTextChanged(p0)
-        }
-
-        override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-            listener.beforeTextChanged(p0, p1, p2, p3)
-        }
-
-        override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-            listener.onTextChanged(p0, p1, p2, p3)
-        }
-    })
-}
-
-inline fun EditText.addTextChangedListener(noinline mAfterTextChanged: (p0: Editable) -> Unit,
-                                           noinline mBeforeTextChanged: (p0: CharSequence, p1: Int, p2: Int, p3: Int) -> Unit,
-                                           noinline mOnTextChanged: (p0: CharSequence, p1: Int, p2: Int, p3: Int) -> Unit) {
-    this.addTextChangedListener(object : TextWatcher {
-        override fun afterTextChanged(p0: Editable) {
-            mAfterTextChanged(p0)
-        }
-
-        override fun beforeTextChanged(p0: CharSequence, p1: Int, p2: Int, p3: Int) {
-            mBeforeTextChanged(p0, p1, p2, p3)
-        }
-
-        override fun onTextChanged(p0: CharSequence, p1: Int, p2: Int, p3: Int) {
-            mOnTextChanged(p0, p1, p2, p3)
-        }
-    })
-}
 
 inline fun EditText.addTextChangedListener(noinline mAfterTextChanged: (p0: Editable) -> Unit) {
     this.addTextChangedListener(object : TextWatcher {
@@ -280,12 +247,6 @@ inline fun EditText.addTextChangedListener(noinline mAfterTextChanged: (p0: Edit
         override fun onTextChanged(p0: CharSequence, p1: Int, p2: Int, p3: Int) {
         }
     })
-}
-
-interface HxbrTextWatcher {
-    fun afterTextChanged(p0: Editable?) {}
-    fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
-    fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
 }
 
 // 获取文本
